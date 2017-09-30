@@ -347,6 +347,20 @@ redis_error(struct msg *r)
     return false;
 }
 
+void
+redis_parse_and_check_request(struct msg *r)
+{
+    redis_parse_req(r);
+    switch (r->type) {
+    case MSG_REQ_REDIS_GET:
+    case MSG_REQ_REDIS_TTL:
+        break;
+    default:
+        r->result = MSG_PARSE_ERROR;
+        log_error("Unauthorized request type %d", r->type);
+    }
+}
+
 /*
  * Reference: http://redis.io/topics/protocol
  *

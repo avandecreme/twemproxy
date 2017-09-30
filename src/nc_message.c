@@ -289,7 +289,7 @@ msg_get(struct conn *conn, bool request, bool redis)
 
     if (redis) {
         if (request) {
-            msg->parser = redis_parse_req;
+            msg->parser = redis_parse_and_check_request;
         } else {
             msg->parser = redis_parse_rsp;
         }

@@ -149,6 +149,7 @@ rstatus_t memcache_reply(struct msg *r);
 void memcache_post_connect(struct context *ctx, struct conn *conn, struct server *server);
 void memcache_swallow_msg(struct conn *conn, struct msg *pmsg, struct msg *msg);
 
+void redis_parse_and_check_request(struct msg *r);
 void redis_parse_req(struct msg *r);
 void redis_parse_rsp(struct msg *r);
 bool redis_failure(struct msg *r);
